@@ -1,0 +1,24 @@
+version: "3"
+services:
+  api:
+    container_name: carprice_backend
+    build: backend
+    ports:
+      - "8080:8080"
+    networks:
+      - my-network
+
+  app:
+    container_name: carprice_frontend
+    build: frontend
+    ports:
+      - "8501:8501"
+    networks:
+      - my-network
+    depends_on:
+      - api
+
+
+networks:
+  my-network:
+    driver: bridge
